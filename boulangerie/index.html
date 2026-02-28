@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Boulangerie artisanale à Blacy depuis 1995. Pain, viennoiseries et pâtisseries maison.">
+  <meta name="keywords" content="boulangerie, pain artisanal, Blacy">
+  <meta property="og:title" content="Le Fournil de Blacy">
+  <title>Le Fournil de Blacy | Boulangerie Artisanale</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🥐</text></svg>">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f5f2;
+      color: #3e2a1f;
+      line-height: 1.6;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 15px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 3px 20px rgba(0, 0, 0, 0.06);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      padding: 10px 60px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #3e2a1f;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      color: #d4a76a;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #5a3921;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #d4a76a;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #d4a76a;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #3e2a1f;
+    }
+
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding: 120px 20px 80px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #3e2a1f;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #d4a76a, transparent);
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=80');
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-overlay {
+      padding: 60px;
+      border-radius: 15px;
+      animation: slideUp 0.8s ease;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn {
+      display: inline-block;
+      background: #d4a76a;
+      padding: 14px 35px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      border: 2px solid #d4a76a;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #c09050;
+      border-color: #c09050;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(212, 167, 106, 0.3);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: #d4a76a;
+    }
+
+    .btn.secondary:hover {
+      background: #d4a76a;
+      color: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 25px;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: #3e2a1f;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .card-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #d4a76a;
+      margin-top: 10px;
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .hour-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid #d4a76a;
+    }
+
+    .hour-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: #3e2a1f;
+    }
+
+    .hour-card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .hour-card.closed {
+      opacity: 0.6;
+    }
+
+    .reviews-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .review-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .stars {
+      color: #d4a76a;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .review-card h4 {
+      margin-bottom: 8px;
+      color: #3e2a1f;
+    }
+
+    .review-card p {
+      color: #666;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .review-author {
+      font-weight: 600;
+      color: #5a3921;
+      font-size: 0.9rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .contact-info p {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-info strong {
+      color: #3e2a1f;
+    }
+
+    .contact-info a {
+      color: #d4a76a;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-info a:hover {
+      color: #c09050;
+    }
+
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #d4a76a;
+      box-shadow: 0 0 0 3px rgba(212, 167, 106, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    form button {
+      width: 100%;
+      background: #d4a76a;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    form button:hover {
+      background: #c09050;
+      transform: translateY(-2px);
+    }
+
+    form button:active {
+      transform: translateY(0);
+    }
+
+    .form-message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    .form-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block;
+    }
+
+    .form-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 40px 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .social-links a {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #d4a76a;
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .social-links a:hover {
+      background: #c09050;
+      transform: translateY(-3px);
+    }
+
+    .speciales-section {
+      background: linear-gradient(135deg, #fff9f0 0%, #ffe8d6 100%);
+      padding: 40px;
+      border-radius: 15px;
+      margin: 40px 0;
+    }
+
+    .special-item {
+      padding: 15px;
+      margin: 10px 0;
+      background: white;
+      border-left: 4px solid #d4a76a;
+      border-radius: 8px;
+    }
+
+    .special-item h4 {
+      color: #3e2a1f;
+      margin-bottom: 5px;
+    }
+
+    .special-item p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #3e2a1f;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    #scrollTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: #d4a76a;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(212, 167, 106, 0.3);
+    }
+
+    #scrollTop:hover {
+      background: #c09050;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(212, 167, 106, 0.4);
+    }
+
+    #scrollTop.show {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 12px 20px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: white;
+        padding: 20px;
+        gap: 15px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      nav.active {
+        max-height: 400px;
+      }
+
+      nav a {
+        padding: 10px 0;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      .page {
+        padding: 100px 15px 60px;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hero-overlay {
+        padding: 30px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #scrollTop {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 10px 15px;
+      }
+
+      .logo {
+        font-size: 1.1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .social-links {
+        gap: 15px;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">🥐 Le Fournil de Blacy</div>
+    <button class="menu-toggle" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav>
+      <a href="?page=home" class="nav-link">Accueil</a>
+      <a href="?page=produits" class="nav-link">Produits</a>
+      <a href="?page=speciales" class="nav-link">Spécialités</a>
+      <a href="?page=apropos" class="nav-link">À propos</a>
+      <a href="?page=contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <div id="home" class="page">
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1>Boulangerie Artisanale à Blacy</h1>
+        <p>Tradition & savoir-faire depuis 1995</p>
+        <p style="font-size: 1rem; opacity: 0.95;">Farines locales • Levain naturel • Cuisson traditionnelle</p>
+        <a href="?page=produits" class="btn">Découvrir nos spécialités</a>
+      </div>
+    </section>
+  </div>
+
+  <div id="produits" class="page">
+    <div class="container">
+      <h2 class="section-title">Notre Vitrine</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Pain" loading="lazy">
+          <div class="card-content">
+            <h3>Pains Artisanaux</h3>
+            <p>Levain naturel et cuisson traditionnelle.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">Baguette • Pain complet • Bâtard</p>
+            <div class="card-price">À partir de 1,50€</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Croissants" loading="lazy">
+          <div class="card-content">
+            <h3>Viennoiseries</h3>
+            <p>Croissants pur beurre et feuilletés maison.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">Croissant • Pain au chocolat • Chausson aux pommes</p>
+            <div class="card-price">À partir de 1,20€</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80" alt="Pâtisseries" loading="lazy">
+          <div class="card-content">
+            <h3>Pâtisseries</h3>
+            <p>Tartes et douceurs artisanales.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">Éclair • Mille-feuille • Macaron</p>
+            <div class="card-price">À partir de 2,50€</div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 60px;">Galerie</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Galerie" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=80" alt="Galerie" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=400&q=80" alt="Galerie" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1535920527894-b400150eae39?auto=format&fit=crop&w=400&q=80" alt="Galerie" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1599599810694-b5ac4dd67fbb?auto=format&fit=crop&w=400&q=80" alt="Galerie" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1472093083152-c8d58e1d6d18?auto=format&fit=crop&w=400&q=80" alt="Galerie" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="speciales" class="page">
+    <div class="container">
+      <h2 class="section-title">Spécialités du Jour</h2>
+      
+      <div class="speciales-section">
+        <h3 style="text-align: center; color: #3e2a1f; margin-bottom: 30px;">Qu'est-ce qu'on prépare aujourd'hui?</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+          <div class="special-item">
+            <h4>📍 Lundi</h4>
+            <p><strong>Spécialité:</strong> Brioche noisette</p>
+            <p><strong>Quantité limitée:</strong> Oui</p>
+          </div>
+          <div class="special-item">
+            <h4>📍 Mardi</h4>
+            <p><strong>Spécialité:</strong> Tarte aux fruits de saison</p>
+            <p><strong>Quantité limitée:</strong> Oui</p>
+          </div>
+          <div class="special-item">
+            <h4>📍 Mercredi</h4>
+            <p><strong>Spécialité:</strong> Kouign-amann breton</p>
+            <p><strong>Quantité limitée:</strong> Oui</p>
+          </div>
+          <div class="special-item">
+            <h4>📍 Jeudi</h4>
+            <p><strong>Spécialité:</strong> Croissant aux amandes</p>
+            <p><strong>Quantité limitée:</strong> Oui</p>
+          </div>
+          <div class="special-item">
+            <h4>📍 Vendredi</h4>
+            <p><strong>Spécialité:</strong> Flan pâtissier maison</p>
+            <p><strong>Quantité limitée:</strong> Oui</p>
+          </div>
+          <div class="special-item">
+            <h4>📍 Week-end</h4>
+            <p><strong>Spécialité:</strong> Toutes les tartes disponibles</p>
+            <p><strong>Quantité limitée:</strong> Non</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 60px;">Horaires d'Ouverture</h2>
+      <div class="hours-grid">
+        <div class="hour-card">
+          <h3>Lundi à Vendredi</h3>
+          <p><strong>Matin:</strong> 6h30 - 12h30</p>
+          <p><strong>Après-midi:</strong> 15h00 - 19h00</p>
+        </div>
+        <div class="hour-card">
+          <h3>Samedi</h3>
+          <p><strong>Matin:</strong> 6h30 - 13h00</p>
+          <p><strong>Après-midi:</strong> 15h00 - 19h30</p>
+        </div>
+        <div class="hour-card closed">
+          <h3>Dimanche</h3>
+          <p><strong>Matin:</strong> 7h00 - 13h00</p>
+          <p><strong>Fermé l'après-midi</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="apropos" class="page">
+    <div class="container">
+      <h2 class="section-title">Notre Histoire</h2>
+      <p style="text-align: center; max-width: 800px; margin: 30px auto; font-size: 1.05rem; line-height: 1.8;">
+        Depuis 1995, nous perpétuons la tradition boulangère artisanale à Blacy. <strong>Farines locales</strong>, <strong>levain naturel</strong> et <strong>passion</strong> guident notre travail quotidien.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 60px;">Nos Valeurs</h2>
+      <div class="grid">
+        <div class="card">
+          <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #fff9f0 0%, #ffe8d6 100%);">
+            <div style="font-size: 3rem; margin-bottom: 15px;">🌾</div>
+            <h3>Qualité</h3>
+            <p>Ingrédients sélectionnés et recettes traditionnelles pour chaque produit.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #fff9f0 0%, #ffe8d6 100%);">
+            <div style="font-size: 3rem; margin-bottom: 15px;">🤝</div>
+            <h3>Proximité</h3>
+            <p>Engagement envers l'économie locale et les producteurs du terroir.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #fff9f0 0%, #ffe8d6 100%);">
+            <div style="font-size: 3rem; margin-bottom: 15px;">❤️</div>
+            <h3>Passion</h3>
+            <p>Amour du métier et du bien-fait pour régaler nos clients chaque jour.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 60px;">Avis Clients</h2>
+      <div class="reviews-container">
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <h4>Excellent pain!</h4>
+          <p>"Les meilleures baguettes du coin. On y revient chaque jour!"</p>
+          <div class="review-author">- Marie D.</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <h4>Une vraie boulangerie artisanale</h4>
+          <p>"Enfin une vraie boulangerie! Croissants au vrai beurre, pain au levain naturel. Bravo!"</p>
+          <div class="review-author">- Pierre M.</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <h4>Parfait pour le petit-déj</h4>
+          <p>"Pain au chocolat délicieux et équipe toujours sympathique. À recommander!"</p>
+          <div class="review-author">- Sophie L.</div>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.facebook.com" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact" class="page">
+    <div class="container">
+      <h2 class="section-title">Nous Contacter</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>
+            <i class="fas fa-map-marker-alt" style="color: #d4a76a;"></i>
+            <span><strong>Adresse :</strong><br>22 rue de la Pentecôte<br>51300 Blacy</span>
+          </p>
+          <p>
+            <i class="fas fa-phone" style="color: #d4a76a;"></i>
+            <span><strong>Téléphone :</strong><br><a href="tel:+33326722056">03 26 72 20 56</a></span>
+          </p>
+          <p>
+            <i class="fas fa-envelope" style="color: #d4a76a;"></i>
+            <span><strong>Email :</strong><br><a href="mailto:lefournil.blacy@gmail.com">lefournil.blacy@gmail.com</a></span>
+          </p>
+
+          <h3 style="margin-top: 30px; margin-bottom: 15px;">Nous suivre</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+
+          <iframe style="margin-top: 30px; width: 100%; height: 250px; border-radius: 12px; border: 1px solid #ddd;" loading="lazy" src="https://www.google.com/maps?q=22+rue+de+la+Pentecôte+51300+Blacy&output=embed" title="Localisation"></iframe>
+        </div>
+
+        <div>
+          <form id="contactForm">
+            <div class="form-message" id="formMessage"></div>
+            
+            <div class="form-group">
+              <label for="name" style="display: block; margin-bottom: 5px; font-weight: 500; color: #3e2a1f;">Votre nom *</label>
+              <input type="text" id="name" name="name" placeholder="Jean Dupont" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email" style="display: block; margin-bottom: 5px; font-weight: 500; color: #3e2a1f;">Votre email *</label>
+              <input type="email" id="email" name="email" placeholder="jean@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone" style="display: block; margin-bottom: 5px; font-weight: 500; color: #3e2a1f;">Téléphone</label>
+              <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78">
+            </div>
+
+            <div class="form-group">
+              <label for="subject" style="display: block; margin-bottom: 5px; font-weight: 500; color: #3e2a1f;">Sujet *</label>
+              <select id="subject" name="subject" required>
+                <option value="">-- Sélectionnez --</option>
+                <option value="commande">Commande spéciale</option>
+                <option value="info">Information</option>
+                <option value="partenaire">Partenariat</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message" style="display: block; margin-bottom: 5px; font-weight: 500; color: #3e2a1f;">Votre message *</label>
+              <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Envoyer le message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>Le Fournil de Blacy</strong> © 2026 – Tous droits réservés</p>
+    <p>22 rue de la Pentecôte • 51300 Blacy • 03 26 72 20 56</p>
+    <p style="font-size: 0.9rem; margin-top: 15px; opacity: 0.8;">Boulangerie Artisanale • Levain Naturel • Farines Locales</p>
+  </footer>
+
+  <button id="scrollTop" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    function loadPage() {
+      const params = new URLSearchParams(window.location.search);
+      const page = params.get('page') || 'home';
+      
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      
+      const active = document.getElementById(page);
+      if (active) {
+        active.classList.add('active');
+      } else {
+        document.getElementById('home').classList.add('active');
+      }
+
+      const navLink = document.querySelector(`a[href="?page=${page}"]`);
+      if (navLink) {
+        navLink.classList.add('active');
+      }
+
+      document.querySelector('nav').classList.remove('active');
+    }
+
+    window.addEventListener('popstate', loadPage);
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', loadPage);
+    });
+
+    loadPage();
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+
+      if (!name || !email || !subject || !message) {
+        formMessage.textContent = 'Veuillez remplir tous les champs obligatoires.';
+        formMessage.className = 'form-message error';
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        formMessage.textContent = 'Veuillez entrer un email valide.';
+        formMessage.className = 'form-message error';
+        return;
+      }
+
+      console.log({ name, email, phone, subject, message });
+      
+      formMessage.textContent = 'Merci! Votre message a été envoyé avec succès. Nous vous répondrons rapidement.';
+      formMessage.className = 'form-message success';
+      contactForm.reset();
+
+      setTimeout(() => {
+        formMessage.className = 'form-message';
+      }, 5000);
+    });
+
+    document.querySelectorAll('a[href^="?page="]').forEach(link => {
+      link.addEventListener('click', () => {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+      });
+    });
+  </script>
+
+</body>
+</html>
