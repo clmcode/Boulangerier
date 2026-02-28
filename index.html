@@ -3,33 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Our Bakery</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Le Fournil de Blacy</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background: #f4a261; padding: 1rem; text-align: center; color: white; }
+        nav a { margin: 0 15px; color: white; text-decoration: none; }
+        .content { padding: 20px; }
+        footer { background: #264653; color: white; text-align: center; padding: 10px 0; position: fixed; width: 100%; bottom: 0; }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Freshly Baked Goods</h1>
+        <h1>Welcome to Le Fournil de Blacy</h1>
         <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
-    <main>
-        <section>
+    <div class="content">
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Le Fournil de Blacy has been serving the best bread and pastries since 2001.</p>
+        </section>
+        <section id="products">
             <h2>Our Products</h2>
-            <p>We offer a variety of baked goods including breads, pastries, and cakes.</p>
+            <ul>
+                <li>Bread</li>
+                <li>Croissants</li>
+                <li>Pastries</li>
+                <li>Cakes</li>
+            </ul>
         </section>
-        <section>
-            <h2>Special Offers</h2>
-            <p>Check out our daily special offers for fresh baked treats!</p>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: contact@lefournildeblacy.fr</p>
         </section>
-    </main>
+    </div>
     <footer>
-        <p>&copy; 2026 Our Bakery. All rights reserved.</p>
+        <p>© 2026 Le Fournil de Blacy. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
